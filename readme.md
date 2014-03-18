@@ -9,8 +9,8 @@ see: [http://facebook4j.org](http://facebook4j.org)
 2.0.5 - latest stable
 
 ## Fixes
-- Fixed an issue with Event/Venue where the FB API returns a JSONArray instead of JSONObject for the "venue" property of an Event. The array is usually empty, so, in this case the venue is set to null.
-- 
+Fixed an issue with Event/Venue where the FB API returns a JSONArray instead of JSONObject for the "venue" property of an Event. The array is usually empty, so, in this case the venue is set to null.
+
 
 ## License
 Facebook4J is released under Apache License 2.0.
