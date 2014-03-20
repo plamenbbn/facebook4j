@@ -87,8 +87,19 @@ import static facebook4j.internal.util.z_F4JInternalParseUtil.*;
             endTime = getISO8601Datetime("end_time", json);
             location = getRawString("location", json);
             if (!json.isNull("venue")) {
-                JSONObject venueJSONObject = json.getJSONObject("venue");
-                venue = new VenueJSONImpl(venueJSONObject);
+                // if Facebook returned a JSONArray for the venue, ignore it (not in specs)
+            	// otherwise, this must be a proper JSONObject of the venue - parse it.  
+        		Object v = json.opt("venue");
+        		if( v instanceof JSONArray ) {
+        			venue = null;
+        		}
+        		else if( v instanceof JSONObject ){
+        			JSONObject venueJSONObject = json.getJSONObject("venue"); 
+        			venue = new VenueJSONImpl(venueJSONObject);
+        		}
+        		else {
+        			throw new FacebookException( "Unkwnon value for Event attribute \"venue\" in Event with ID " + id );
+        		}
             }
             privacy = EventPrivacyType.getInstance(getRawString("privacy", json));
             updatedTime = getISO8601Datetime("updated_time" ,json);
