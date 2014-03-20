@@ -5,7 +5,12 @@ Facebook4J is a Facebook Graph API binding library for the Java language license
 see: [http://facebook4j.org](http://facebook4j.org)
 
 ## Version
-2.0.5
+2.0.6-SHAPSHOT
+2.0.5 - latest stable
+
+## Fixes
+Fixed an issue with Event/Venue where the FB API returns a JSONArray instead of JSONObject for the "venue" property of an Event. The array is usually empty, so, in this case the venue is set to null.
+
 
 ## License
 Facebook4J is released under Apache License 2.0.
